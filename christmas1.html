@@ -1,0 +1,47 @@
+<head>
+    <title>给LY的圣诞</title>
+    <!-- If you'd like to support IE8 (for Video.js versions prior to v7) -->
+</head>
+<body>
+    <video  id="myvideo" width="100%" height="auto" controls="controls" muted> <!-- 加muted 是为了可以实现自动播放  -->
+          <span style="white-space:pre">    </span><!-- 支持播放的文件格式 -->
+           <source src="" type='video/mp4' /> 
+   </video>
+   <audio id="backgroundMusic" loop>
+    <!-- 支持播放的音频文件格式 -->
+    <source src="Magic Christmas.mp3" type="audio/mp3">
+   </audio>
+<script src="https://apps.bdimg.com/libs/jquery/2.1.4/jquery.min.js" ></script> 
+  <script>  
+    var video = document.getElementById("myvideo");  
+    var vList = ['1.mp4', '3.mp4', '2.mp4']; // 初始化播放列表，这里的url要用相对路径  
+    var vLen = vList.length; 
+    var curr = 0;
+    $(document).ready(function(){   
+
+            play();  
+            
+            video.addEventListener('ended', function(){
+                play();
+            }); 
+            // 监听背景音乐播放结束事件
+            backgroundMusic.addEventListener('ended', function () {
+                // 重新播放背景音乐
+                backgroundMusic.play();
+            });
+                
+    });                    
+                
+    function play() {  
+        video.src = vList[curr];  
+        video.load();   
+        video.play();  
+        curr++;  
+        if(curr >= vLen){  
+            curr = 0; //重新循环播放
+        }  
+        // 播放背景音乐
+        backgroundMusic.play();
+    }  
+  </script>
+</body>
